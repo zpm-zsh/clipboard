@@ -29,7 +29,7 @@ elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
       cat /dev/clipboard
     fi
   }
-# WSL without a GUI
+# WSL
 elif [[ $OSTYPE == linux* ]] && [[ $(< /proc/version) == *Microsoft* ]] \
   && ! xclip -o &> /dev/null; then
   alias open='explorer.exe'
