@@ -12,9 +12,14 @@ if [[ "$OSTYPE" == darwin* ]]; then
         pbpaste
     fi
   }
-elif [[ "$OSTYPE" == cygwin* ]]; then
-  alias open='cygstart'
-  alias o='cygstart'
+elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
+  if [[ $OSTYPE == cygwin* ]]; then
+    alias open='cygstart'
+    alias o='cygstart'
+  else
+    alias open='explorer'
+    alias o='explorer'
+  fi
   alias pbcopy='tee > /dev/clipboard'
   alias pbpaste='cat /dev/clipboard'
   function clip(){
