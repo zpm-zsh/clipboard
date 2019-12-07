@@ -29,6 +29,20 @@ elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
       cat /dev/clipboard
     fi
   }
+# WSL
+elif [[ $OSTYPE == linux* ]] && [[ $(< /proc/version) == *Microsoft* ]] \
+  && ! xclip -o &> /dev/null; then
+  alias open='explorer.exe'
+  alias o='explorer.exe'
+  alias pbcopy='clip.exe'
+  alias pbpaste='powershell.exe -Command Get-Clipboard'
+  function clip() {
+    if [[ ! -t 0   ]]; then
+      clip.exe
+    else
+      powershell.exe -Command Get-Clipboard
+    fi
+  }
 else
   alias open='xdg-open'
   alias o='xdg-open'
