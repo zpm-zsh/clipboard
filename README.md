@@ -1,6 +1,6 @@
 # Clipboard
 
-Zsh clipboard plugin that adds cross-platform helper functions to access the system clipboard. Works on macOS, X11 (and Wayland), Cygwin, MSYS2, and Git for Windows.
+Zsh clipboard plugin that adds cross-platform helper functions to access the system clipboard. Works on macOS, X11 (and Wayland), Cygwin, and MSYS2.
 
 
 1. `pbcopy` - pipe something to this function, e.g. `echo Hello world | pbcopy`, and it will be copied to system clipboard. 
