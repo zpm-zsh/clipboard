@@ -17,8 +17,8 @@ elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
     alias open='cygstart'
     alias o='cygstart'
   else
-    alias open='start'
-    alias o='start'
+    alias open='explorer'
+    alias o='explorer'
   fi
   alias pbcopy='tee > /dev/clipboard'
   alias pbpaste='cat /dev/clipboard'
