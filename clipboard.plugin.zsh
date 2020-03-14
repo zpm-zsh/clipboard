@@ -30,7 +30,7 @@ elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
     fi
   }
 # WSL
-elif [[ $OSTYPE == linux* ]] && [[ $(< /proc/version) == *Microsoft* ]] \
+elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]] \
   && ! xclip -o &> /dev/null; then
   alias open='explorer.exe'
   alias o='explorer.exe'
