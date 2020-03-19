@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+function pbcopy() {
+  if (( $+commands[xdg-open] )); then
+    xclip -selection clipboard -in
+  elif [[ "$OSTYPE" == darwin* ]]; then
+    command pbcopy
+  elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
+    tee > /dev/clipboard
+  elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]]; then
+    # WSL
+    clip.exe
+  fi
+}

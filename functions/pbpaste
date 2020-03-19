@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+function pbpaste() {
+  if (( $+commands[xdg-open] )); then
+    xclip -selection clipboard -out
+  elif [[ "$OSTYPE" == darwin* ]]; then
+    command pbpaste
+  elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
+    cat /dev/clipboard
+  elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]]; then
+    # WSL
+    powershell.exe -Command Get-Clipboard
+  fi
+}
