@@ -1,29 +1,28 @@
 #!/usr/bin/env zsh
-function clip() {
-  if (( $+commands[xdg-open] )); then
-    if [[ ! -t 0 ]]; then
-      xclip -selection clipboard -in
-    else
-      xclip -selection clipboard -out
-    fi
-  elif [[ "$OSTYPE" == darwin* ]]; then
-    if [[ ! -t 0 ]]; then
-      pbcopy
-    else
-      pbpaste
-    fi
-  elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
-    if [[ ! -t 0 ]]; then
-      tee > /dev/clipboard
-    else
-      cat /dev/clipboard
-    fi
-  elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]]; then
-    # WSL
-    if [[ ! -t 0   ]]; then
-      clip.exe
-    else
-      powershell.exe -Command Get-Clipboard
-    fi
+
+if (( $+commands[xdg-open] )); then
+  if [[ ! -t 0 ]]; then
+    xclip -selection clipboard -in
+  else
+    xclip -selection clipboard -out
   fi
-}
+elif [[ "$OSTYPE" == darwin* ]]; then
+  if [[ ! -t 0 ]]; then
+    pbcopy
+  else
+    pbpaste
+  fi
+elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
+  if [[ ! -t 0 ]]; then
+    tee > /dev/clipboard
+  else
+    cat /dev/clipboard
+  fi
+elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]]; then
+  # WSL
+  if [[ ! -t 0   ]]; then
+    clip.exe
+  else
+    powershell.exe -Command Get-Clipboard
+  fi
+fi

@@ -1,16 +1,14 @@
 #!/usr/bin/env zsh
 
-function open() {
-  if (( $+commands[xdg-open] )); then
-    xdg-open $@
-  elif [[ "$OSTYPE" == darwin* ]]; then
-    command open $@
-  elif [[ "$OSTYPE" == cygwin* ]]; then
-    cygstart $@
-  elif [[ "$OSTYPE" == msys ]]; then
-    explorer $@
-  elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]]; then
-    # WSL
-    explorer.exe $@
-  fi
-}
+if (( $+commands[xdg-open] )); then
+  xdg-open $@
+elif [[ "$OSTYPE" == darwin* ]]; then
+  command open $@
+elif [[ "$OSTYPE" == cygwin* ]]; then
+  cygstart $@
+elif [[ "$OSTYPE" == msys ]]; then
+  explorer $@
+elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]]; then
+  # WSL
+  explorer.exe $@
+fi
