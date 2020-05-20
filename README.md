@@ -31,7 +31,7 @@ plugins=( [plugins...] clipboard [plugins...])
 Add the following to your .zshrc file somewhere after you source zpm.
 
 ```sh
-zpm "zpm-zsh/clipboard"
+zpm load zpm-zsh/clipboard
 ```
 
 ## [antigen](https://github.com/zsh-users/antigen)
