@@ -6,7 +6,7 @@ elif [[ "$OSTYPE" == darwin* ]]; then
   command pbpaste
 elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
   cat /dev/clipboard
-elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]]; then
+elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *microsoft* ]]; then
   # WSL
   powershell.exe -Command Get-Clipboard
 fi
