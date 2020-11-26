@@ -18,7 +18,7 @@ elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
   else
     cat /dev/clipboard
   fi
-elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]]; then
+elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *microsoft* ]]; then
   # WSL
   if [[ ! -t 0   ]]; then
     clip.exe

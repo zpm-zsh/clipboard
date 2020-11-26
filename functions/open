@@ -8,7 +8,7 @@ elif [[ "$OSTYPE" == cygwin* ]]; then
   cygstart $@
 elif [[ "$OSTYPE" == msys ]]; then
   explorer $@
-elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]]; then
+elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *microsoft* ]]; then
   # WSL
   explorer.exe $@
 fi
