@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
 
-if (( $+commands[xdg-open] )); then
+if (( $+commands[xclip] )); then
   xclip -selection clipboard -in
+if (( $+commands[xsel] )); then
+  xsel -b
 elif [[ "$OSTYPE" == darwin* ]]; then
   command pbcopy
 elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
