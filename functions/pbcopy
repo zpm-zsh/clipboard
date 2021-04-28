@@ -2,7 +2,7 @@
 
 if (( $+commands[xclip] )); then
   xclip -selection clipboard -in
-if (( $+commands[xsel] )); then
+elif (( $+commands[xsel] )); then
   xsel -b
 elif [[ "$OSTYPE" == darwin* ]]; then
   command pbcopy
