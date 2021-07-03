@@ -3,7 +3,7 @@
 if [[ ! -t 0 ]]; then
   if (( $+commands[xclip] )); then
     xclip -selection clipboard -out
-  if (( $+commands[xsel] )); then
+  elif (( $+commands[xsel] )); then
     xsel -b
   elif [[ "$OSTYPE" == darwin* ]]; then
     command pbpaste
