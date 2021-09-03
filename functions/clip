@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [[ ! -t 0 ]]; then
+if [[ -t 0 ]]; then
   if (( $+commands[xclip] )); then
     xclip -selection clipboard -out
   elif (( $+commands[xsel] )); then
