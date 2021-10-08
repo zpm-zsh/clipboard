@@ -1,14 +1,17 @@
 #!/usr/bin/env zsh
 
-if (( $+commands[xclip] )); then
+# WSL 1 or 2
+if [[ $OSTYPE == linux* && -r /proc/version &&
+    $(< /proc/version) == *[Mm]icrosoft* ]]; then
+  if ! xclip -selection clipboard -in 2> /dev/null; then
+    clip.exe
+  fi
+elif (( ${+commands[xclip]} )); then
   xclip -selection clipboard -in
-elif (( $+commands[xsel] )); then
+elif (( ${+commands[xsel]} )); then
   xsel -b
-elif [[ "$OSTYPE" == darwin* ]]; then
+elif [[ $OSTYPE == darwin* ]]; then
   command pbcopy
-elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
+elif [[ $OSTYPE == (cygwin*|msys) ]]; then
   tee > /dev/clipboard
-elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *microsoft* ]]; then
-  # WSL
-  clip.exe
 fi
