@@ -1,29 +1,7 @@
 #!/usr/bin/env zsh
 
 if [[ -t 0 ]]; then
-  if (( $+commands[xclip] )); then
-    xclip -selection clipboard -out
-  elif (( $+commands[xsel] )); then
-    xsel -b
-  elif [[ "$OSTYPE" == darwin* ]]; then
-    command pbpaste
-  elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
-    cat /dev/clipboard
-  elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *microsoft* ]]; then
-    # WSL
-    powershell.exe -Command Get-Clipboard
-  fi
+  pbpaste
 else
-  if (( $+commands[xclip] )); then
-    xclip -selection clipboard -in
-  elif (( $+commands[xsel] )); then
-    xsel -b
-  elif [[ "$OSTYPE" == darwin* ]]; then
-    command pbcopy
-  elif [[ "$OSTYPE" == (cygwin*|msys) ]]; then
-    tee > /dev/clipboard
-  elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *microsoft* ]]; then
-    # WSL
-    clip.exe
-  fi
+  pbcopy
 fi

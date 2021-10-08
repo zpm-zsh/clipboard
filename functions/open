@@ -1,14 +1,15 @@
 #!/usr/bin/env zsh
 
-if (( $+commands[xdg-open] )); then
-  xdg-open $@
-elif [[ "$OSTYPE" == darwin* ]]; then
-  command open $@
-elif [[ "$OSTYPE" == cygwin* ]]; then
-  cygstart $@
-elif [[ "$OSTYPE" == msys ]]; then
-  explorer $@
-elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *microsoft* ]]; then
-  # WSL
+# WSL 1 or 2
+if [[ $OSTYPE == linux* && -r /proc/version &&
+    $(< /proc/version) == *[Mm]icrosoft* ]]; then
   explorer.exe $@
+elif (( ${+commands[xdg-open]} )); then
+  xdg-open $@
+elif [[ $OSTYPE == darwin* ]]; then
+  command open $@
+elif [[ $OSTYPE == cygwin* ]]; then
+  cygstart $@
+elif [[ $OSTYPE == msys ]]; then
+  explorer.exe $(cygpath -w $@)
 fi
