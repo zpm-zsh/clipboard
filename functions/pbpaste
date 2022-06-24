@@ -10,6 +10,8 @@ elif (( ${+commands[xclip]} )); then
   xclip -selection clipboard -out
 elif (( ${+commands[xsel]} )); then
   xsel -b
+elif (( ${+commands[wl-paste]} )); then
+  wl-paste  
 elif [[ $OSTYPE == darwin* ]]; then
   command pbpaste
 elif [[ $OSTYPE == (cygwin*|msys) ]]; then
