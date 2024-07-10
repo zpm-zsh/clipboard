@@ -1,15 +1,17 @@
 #!/usr/bin/env zsh
 
 # WSL 1 or 2
-if [[ $OSTYPE == linux* && -r /proc/version &&
-    $(< /proc/version) == *[Mm]icrosoft* ]]; then
-  explorer.exe $@
-elif (( ${+commands[xdg-open]} )); then
+if (( ${+commands[xdg-open]} )); then
   xdg-open $@
+elif (( ${+commands[termux-open]} )); then
+  termux-open $@
 elif [[ $OSTYPE == darwin* ]]; then
   command open $@
 elif [[ $OSTYPE == cygwin* ]]; then
   cygstart $@
+elif [[ $OSTYPE == linux* && -r /proc/version &&
+    $(< /proc/version) == *[Mm]icrosoft* ]]; then
+  explorer.exe $@
 elif [[ $OSTYPE == msys ]]; then
   explorer.exe $(cygpath -w $@)
 fi

@@ -1,17 +1,16 @@
 #!/usr/bin/env zsh
 
-# WSL 1 or 2
-if [[ $OSTYPE == linux* && -r /proc/version &&
-    $(< /proc/version) == *[Mm]icrosoft* ]]; then
-  if ! xclip -selection clipboard -out 2> /dev/null; then
-    powershell.exe -NoProfile -NonInteractive -Command Get-Clipboard
-  fi
-elif (( ${+commands[xclip]} )); then
+if (( ${+commands[xclip]} )); then
   xclip -selection clipboard -out
 elif (( ${+commands[xsel]} )); then
   xsel -b
 elif (( ${+commands[wl-paste]} )); then
-  wl-paste  
+  wl-paste
+elif (( ${+commands[termux-clipboard-get]} )); then
+  termux-clipboard-get
+# WSL 1 or 2
+elif [[ $OSTYPE == linux* && -r /proc/version && $(< /proc/version) == *[Mm]icrosoft* ]]; then
+    powershell.exe -NoProfile -NonInteractive -Command Get-Clipboard
 elif [[ $OSTYPE == darwin* ]]; then
   command pbpaste
 elif [[ $OSTYPE == (cygwin*|msys) ]]; then
