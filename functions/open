@@ -8,7 +8,11 @@ elif (( ${+commands[termux-open]} )); then
 elif [[ $OSTYPE == darwin* ]]; then
   command open $@
 elif [[ $OSTYPE == cygwin* ]]; then
-  cygstart $@
+  if (( ${+commands[cygstart]} )); then
+    cygstart $@
+  else
+    start $@
+  fi
 elif [[ $OSTYPE == linux* && -r /proc/version &&
     $(< /proc/version) == *[Mm]icrosoft* ]]; then
   explorer.exe $@
