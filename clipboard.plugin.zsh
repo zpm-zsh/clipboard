@@ -10,5 +10,10 @@ if [[ $PMSPEC != *f* ]] {
 
 autoload -Uz open pbcopy pbpaste clip
 
-DEPENDENCES_ARCH+=(xclip)
-DEPENDENCES_DEBIAN+=(xclip)
+if [[ -n "$WAYLAND_DISPLAY" ]]; then
+  DEPENDENCES_ARCH+=(wl-clipboard)
+  DEPENDENCES_DEBIAN+=(wl-clipboard)
+else
+  DEPENDENCES_ARCH+=(xclip)
+  DEPENDENCES_DEBIAN+=(xclip)
+fi
